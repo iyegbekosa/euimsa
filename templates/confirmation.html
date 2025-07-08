@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+</head>
+<body>
+    <h1>Payment Initialization Successful!</h1>
+    <p>You are about to pay for your association fee for session: {{ payment_ref }}</p>
+    <p><a href="{{ auth_url }}" target="_blank">Click here to complete your payment</a></p>
+    <p>Payment Reference: {{ payment_ref }}</p>
+</body>
+</html>
