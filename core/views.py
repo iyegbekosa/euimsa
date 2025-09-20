@@ -10,9 +10,11 @@ from django.conf import settings
 from django.urls import reverse
 from decimal import Decimal
 import requests
-import io
-import os
+import io, os
 from .utils import get_payment_model_instance
+from reportlab.lib.units import mm
+from reportlab.lib import colors
+from django.core.mail import EmailMessage
 
 
 @login_required
@@ -427,6 +429,45 @@ def paystack_callback(request):
         return render(request, 'error.html', {"error_message": "Payment not successful."})
 
 
+# def payment_receipt(request, ref):
+#     payment = get_object_or_404(Payment, ref=ref)
+
+#     if not payment.verified:
+#         return render(request, "error.html", {"error_message": "Payment not verified."})
+
+#     buffer = io.BytesIO()
+#     p = canvas.Canvas(buffer, pagesize=A4)
+
+#     # Insert logo
+#     logo_path = os.path.join(settings.BASE_DIR, 'static', 'logo.png')
+#     if os.path.exists(logo_path):
+#         p.drawImage(ImageReader(logo_path), 230, 750, width=120, height=60, preserveAspectRatio=True)
+
+#     # Draw header text
+#     p.setFont("Helvetica-Bold", 14)
+#     p.drawCentredString(300, 730, "EDO UNIVERSITY IYAMHO MEDICAL STUDENTS ASSOCIATION")
+
+#     # Payment info
+#     p.setFont("Helvetica", 12)
+#     p.drawString(100, 680, f"Name: {payment.user.get_full_name()}")
+#     p.drawString(100, 660, f"Email: {payment.email}")
+#     p.drawString(100, 640, f"Matriculation Number: {payment.user.mat_no}")
+#     p.drawString(100, 620, f"Amount: NGN {payment.amount}")
+#     p.drawString(100, 600, f"Reference: {payment.ref}")
+#     p.drawString(100, 580, f"Status: SUCCESSFUL")
+#     p.drawString(100, 560, f"Date: {payment.date_created.strftime('%d %B %Y, %I:%M %p')}")
+#     # p.drawString(100, 540, f"Description: {payment.payment_for.description if payment.payment_for else 'N/A'}")
+
+#     p.showPage()
+#     p.save()
+
+#     buffer.seek(0)
+#     response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="payment_receipt.pdf"'
+#     return response
+
+
+
 def payment_receipt(request, ref):
     payment = get_object_or_404(Payment, ref=ref)
 
@@ -435,31 +476,73 @@ def payment_receipt(request, ref):
 
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
 
-    # Insert logo
+    p.setStrokeColor(colors.HexColor("#4a4a4a"))
+    p.rect(15*mm, 15*mm, width - 30*mm, height - 30*mm, stroke=1, fill=0)
+
+    p.saveState()
+    p.setFont("Helvetica-Bold", 60)
+    p.setFillColor(colors.lightgrey)
+    p.translate(width/2, height/2)
+    p.rotate(90)
+    p.drawCentredString(0, 0, "EUIMSA RECEIPT")
+    p.restoreState()
+
     logo_path = os.path.join(settings.BASE_DIR, 'static', 'logo.png')
     if os.path.exists(logo_path):
-        p.drawImage(ImageReader(logo_path), 230, 750, width=120, height=60, preserveAspectRatio=True)
+        p.drawImage(ImageReader(logo_path), (width/2) - 40, height - 100,
+                    width=80, height=50, preserveAspectRatio=True)
 
-    # Draw header text
-    p.setFont("Helvetica-Bold", 14)
-    p.drawCentredString(300, 730, "EDO UNIVERSITY IYAMHO MEDICAL STUDENTS ASSOCIATION")
-
-    # Payment info
+    p.setFont("Helvetica-Bold", 16)
+    p.drawCentredString(width/2, height - 120,
+                        "EDO UNIVERSITY IYAMHO MEDICAL STUDENTS ASSOCIATION")
     p.setFont("Helvetica", 12)
-    p.drawString(100, 680, f"Name: {payment.user.get_full_name()}")
-    p.drawString(100, 660, f"Email: {payment.email}")
-    p.drawString(100, 640, f"Matriculation Number: {payment.user.mat_no}")
-    p.drawString(100, 620, f"Amount: NGN {payment.amount}")
-    p.drawString(100, 600, f"Reference: {payment.ref}")
-    p.drawString(100, 580, f"Status: SUCCESSFUL")
-    p.drawString(100, 560, f"Date: {payment.date_created.strftime('%d %B %Y, %I:%M %p')}")
-    # p.drawString(100, 540, f"Description: {payment.payment_for.description if payment.payment_for else 'N/A'}")
+    p.drawCentredString(width/2, height - 140, "Official Payment Receipt")
 
+    p.line(50, height - 150, width - 50, height - 150)
+
+    p.setFont("Helvetica-Bold", 14)
+    p.setFillColor(colors.HexColor("#333333"))
+    p.drawString(60, height - 180, "Payment Information")
+
+    p.setFillColor(colors.black)
+    p.setFont("Helvetica", 12)
+    details = [
+        ("Name", payment.user.get_full_name()),
+        ("Email", payment.email),
+        ("Matriculation Number", getattr(payment.user, "mat_no", "N/A")),
+        ("Amount", f"NGN {payment.amount:,.2f}"),
+        ("Reference", payment.ref),
+        ("Status", "SUCCESSFUL"),
+        ("Date", payment.date_created.strftime('%d %B %Y, %I:%M %p')),
+    ]
+
+    y = height - 200
+    for label, value in details:
+        p.setFont("Helvetica-Bold", 11)
+        p.drawString(70, y, f"{label}:")
+        p.setFont("Helvetica", 11)
+        p.drawString(220, y, str(value))
+        y -= 25
+
+    p.setFont("Helvetica-Oblique", 10)
+    p.setFillColor(colors.HexColor("#555555"))
+    footer_y = 25*mm
+    p.drawCentredString(width/2, footer_y, "Thank you for your payment.")
+
+    # Finalize PDF
     p.showPage()
     p.save()
+    pdf_data = buffer.getvalue()
+    buffer.close()
 
-    buffer.seek(0)
-    response = HttpResponse(buffer.getvalue(), content_type='application/pdf')
+    subject = "Your Payment Receipt"
+    body = f"Dear {payment.user.get_full_name()},\n\nThank you for your payment. Please find your receipt attached.\n\nRegards,\nEUIMSA"
+    email = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, [payment.email])
+    email.attach("payment_receipt.pdf", pdf_data, "application/pdf")
+    email.send()
+
+    response = HttpResponse(pdf_data, content_type="application/pdf")
     response['Content-Disposition'] = 'attachment; filename="payment_receipt.pdf"'
     return response

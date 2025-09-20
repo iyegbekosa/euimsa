@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'user',
+    'events',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'euimsa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,35 +142,63 @@ PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
 
 # Subaccounts for splits
 ACCT_PARTNER = ''
-ACCT_EUIMSA_MAIN = 'ACCT_4z7gft74brz1ihj'
-ACCT_EUIMSA_SUB = 'ACCT_brjeqoh7sp90hoi'
-ACCT_COLLEGE_BODY = 'ACCT_m8o1yrltmzs1484'
+ACCT_EUIMSA_MAIN = 'ACCT_9cos03wvmz3grru'
+ACCT_EUIMSA_SUB = 'ACCT_9cos03wvmz3grru'
+ACCT_COLLEGE_BODY = 'ACCT_9cos03wvmz3grru'
 
 
 PAYSTACK_SPLITS = {
     'SKIL': {
-        'flat_share': 10000,  # ₦100 in kobo
+        'flat_share': 10000,
         'flat_recipient': ACCT_PARTNER,
         'main_recipient': ACCT_EUIMSA_SUB
     },
     'COLL': {
-        'flat_share': 10000,  # ₦100 in kobo
+        'flat_share': 10000,
         'flat_recipient': ACCT_COLLEGE_BODY,
         'main_recipient': ACCT_EUIMSA_MAIN,
         'sub_recipient': ACCT_EUIMSA_SUB
     },
     'DUES': {
-        # No split — all to EUIMSA
         'flat_share': 0,
         'flat_recipient': None,
         'main_recipient': 'ACCT_EUIMSA_MAIN'
     }
 }
 
+EMAIL_BACKEND = config("EMAIL_BACKEND")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT", cast=int)
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+
 
 STORAGES = {
-    # ...
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
+
+import os
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django_error.log'),
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     },
 }

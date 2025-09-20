@@ -1,0 +1,2 @@
+from django.core.mail import send_mail
+send_mail(subject='Test Email',message='This is a test email from Django using Zoho SMTP.',from_email='EUIMSA <support@euimsa.com>',recipient_list=['iyegbewise@gmail.com'],fail_silently=False,)

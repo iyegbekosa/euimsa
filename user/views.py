@@ -9,6 +9,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import NewUser
 from django.db import IntegrityError
+from django.contrib.auth.views import PasswordResetConfirmView
+from .forms import CustomSetPasswordForm
+
 
 
 def signup_view(request):
@@ -89,3 +92,16 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+def forgot_view(request):
+    user = request.user
+    context = {
+        'user':user,
+    }
+    return render(request, context, 'forgot.html')
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = CustomSetPasswordForm
+    template_name = 'custom_reg/password_reset_confirm.html'
