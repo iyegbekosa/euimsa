@@ -1,8 +1,8 @@
-from django.db import models
-from django.conf import settings
-from user.models import NewUser
-import uuid
 from django.db.models import Sum
+from user.models import NewUser
+from django.db import models
+import uuid
+
 
 
 class Category(models.Model):

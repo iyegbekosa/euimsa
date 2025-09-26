@@ -178,10 +178,10 @@
                 {% for candidate in category.candidates.all %}
                     <div class="col-md-4 mb-4">
                         <div class="card candidate-card shadow-sm">
-                            {% if candidate.image %}
-                                <img src="{{ candidate.image.url }}" class="candidate-img" alt="{{ candidate.name }}">
+                            {% if candidate.picture %}
+                                <img src="{{ candidate.picture.url }}" class="candidate-img" alt="{{ candidate.name }}">
                             {% else %}
-                                <img src="{% static 'default-avatar.png' %}" class="candidate-img" alt="No image">
+                                <img src="" class="candidate-img" alt="No image">
                             {% endif %}
                             <div class="card-body text-center">
                                 <h5 class="card-title">{{ candidate.name }}</h5>

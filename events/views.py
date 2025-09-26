@@ -1,13 +1,15 @@
-# views.py
-import requests, json
-import uuid
-from django.conf import settings
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
 from .models import VoteTransaction, Candidate, Category
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 from .utils import add_paystack_charges
+from django.contrib import messages
+from django.conf import settings
+from django.urls import reverse
+import requests
+import uuid
+import json
+
 
 PRICE_PER_VOTE = 50  # ₦100 per vote
 
@@ -129,3 +131,38 @@ def paystack_webhook(request):
 
 def payment_success(request):
     return render(request, "success.html")
+
+
+
+def register_candidate(request):
+    if request.method == "POST":
+        category_id = request.POST.get("category")
+        name = request.POST.get("name")
+        picture = request.FILES.get("picture")
+
+        if not category_id or not name:
+            messages.error(request, "Category and Name are required.")
+            return redirect("register_candidate")
+
+        try:
+            category = Category.objects.get(id=category_id)
+        except Category.DoesNotExist:
+            messages.error(request, "Invalid category.")
+            return redirect("register_candidate")
+
+        Candidate.objects.create(
+            category=category,
+            name=name,
+            picture=picture
+        )
+
+        messages.success(request, "Candidate registered successfully!")
+        return redirect("successful")  
+
+    categories = Category.objects.all()
+    return render(request, "event/register_candidate.html", {"categories": categories})
+
+
+def successful(request):
+    return render(request, "event/successful.html")
+

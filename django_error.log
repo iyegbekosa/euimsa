@@ -1074,3 +1074,429 @@ Traceback (most recent call last):
   File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/requests/adapters.py", line 698, in send
     raise SSLError(e, request=request)
 requests.exceptions.SSLError: HTTPSConnectionPool(host='api.paystack.co', port=443): Max retries exceeded with url: /transaction/verify/15756f0c-289 (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_BAD_RECORD_MAC] sslv3 alert bad record mac (_ssl.c:2638)')))
+Internal Server Error: /register
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 163, in register_candidate
+    return render(request, "event/register_candidate.html", {"categories": categories})
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+Internal Server Error: /register
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/files/storage/handler.py", line 26, in __getitem__
+    return self._storages[alias]
+           ~~~~~~~~~~~~~~^^^^^^^
+KeyError: 'default'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/files/storage/handler.py", line 29, in __getitem__
+    params = self.backends[alias]
+             ~~~~~~~~~~~~~^^^^^^^
+KeyError: 'default'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 153, in register_candidate
+    Candidate.objects.create(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        category=category,
+        ^^^^^^^^^^^^^^^^^^
+        name=name,
+        ^^^^^^^^^^
+        picture=picture
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1854, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1880, in execute_sql
+    for sql, params in self.as_sql():
+                       ~~~~~~~~~~~^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1805, in as_sql
+    self.prepare_value(field, self.pre_save_val(field, obj))
+                              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1749, in pre_save_val
+    return field.pre_save(obj, add=True)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/fields/files.py", line 338, in pre_save
+    file.save(file.name, file.file, save=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/fields/files.py", line 98, in save
+    name = self.field.generate_filename(self.instance, name)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/db/models/fields/files.py", line 358, in generate_filename
+    return self.storage.generate_filename(filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/files/storage/__init__.py", line 23, in _setup
+    self._wrapped = storages[DEFAULT_STORAGE_ALIAS]
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/files/storage/handler.py", line 31, in __getitem__
+    raise InvalidStorageError(
+        f"Could not find config for '{alias}' in settings.STORAGES."
+    )
+django.core.files.storage.handler.InvalidStorageError: Could not find config for 'default' in settings.STORAGES.
+Internal Server Error: /register
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 160, in register_candidate
+    return redirect("sucess")
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'sucess' not found. 'sucess' is not a valid view function or pattern name.
+Internal Server Error: /vote/success/
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 133, in payment_success
+    return render(request, "success.html")
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 116, in render
+    url = self.url(context)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 204, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 183, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 518, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'assets/js/charts-custom.js'
+Internal Server Error: /votes/
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 19, in votes_page
+    return render(request, "event/votes.html", {"categories": categories})
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 116, in render
+    url = self.url(context)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 204, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 183, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 518, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'default-avatar.png'
+Internal Server Error: /votes/
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 19, in votes_page
+    return render(request, "event/votes.html", {"categories": categories})
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 116, in render
+    url = self.url(context)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/templatetags/static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 204, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 183, in _url
+    hashed_name = hashed_name_func(*args)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/contrib/staticfiles/storage.py", line 518, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'default-avatar.png'
+Internal Server Error: /register
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 163, in register_candidate
+    return render(request, "event/register_candidate.html", {"categories": categories})
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'register' not found. 'register' is not a valid view function or pattern name.
+Internal Server Error: /register
+Traceback (most recent call last):
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/euimsa/events/views.py", line 163, in register_candidate
+    return render(request, "event/register_candidate.html", {"categories": categories})
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/user/Desktop/build2rank/dev/euimsa_new/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'register' not found. 'register' is not a valid view function or pattern name.

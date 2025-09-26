@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['euimsa.com', 'www.euimsa.com']
+ALLOWED_HOSTS = ['euimsa.com', 'www.euimsa.com', '127.0.0.1']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'user',
     'events',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -126,10 +127,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -141,10 +138,10 @@ PAYSTACK_SPLIT_CODE = config('PAYSTACK_SPLIT_CODE')
 PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
 
 # Subaccounts for splits
-ACCT_PARTNER = ''
-ACCT_EUIMSA_MAIN = 'ACCT_4z7gft74brz1ihj'
-ACCT_EUIMSA_SUB = 'ACCT_brjeqoh7sp90hoi'
-ACCT_COLLEGE_BODY = 'ACCT_m8o1yrltmzs1484'
+ACCT_PARTNER = config("ACCT_PARTNER")
+ACCT_EUIMSA_MAIN = config("ACCT_EUIMSA_MAIN")
+ACCT_EUIMSA_SUB = config("ACCT_EUIMSA_SUB")
+ACCT_COLLEGE_BODY = config("ACCT_COLLEGE_BODY")
 
 
 PAYSTACK_SPLITS = {
@@ -175,12 +172,28 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
 
 
+
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
 }
 
+# AWS S3 media settings
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_REGION_NAME = config("AWS_S3_REGION_NAME", default="us-east-1")
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+# Media files (user uploads → S3)
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 
 
 import os
