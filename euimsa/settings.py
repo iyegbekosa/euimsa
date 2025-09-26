@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['euimsa.com', 'www.euimsa.com']
 
 
 # Application definition
@@ -142,9 +142,9 @@ PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
 
 # Subaccounts for splits
 ACCT_PARTNER = ''
-ACCT_EUIMSA_MAIN = 'ACCT_9cos03wvmz3grru'
-ACCT_EUIMSA_SUB = 'ACCT_9cos03wvmz3grru'
-ACCT_COLLEGE_BODY = 'ACCT_9cos03wvmz3grru'
+ACCT_EUIMSA_MAIN = 'ACCT_4z7gft74brz1ihj'
+ACCT_EUIMSA_SUB = 'ACCT_brjeqoh7sp90hoi'
+ACCT_COLLEGE_BODY = 'ACCT_m8o1yrltmzs1484'
 
 
 PAYSTACK_SPLITS = {
@@ -202,3 +202,5 @@ LOGGING = {
         },
     },
 }
+
+LOGIN_URL = "login" 

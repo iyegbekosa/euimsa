@@ -59,6 +59,8 @@ def initiate_vote_payment(request, candidate_id):
             "amount": paystack_amount,  # already in Kobo
             "reference": transaction.transaction_ref,
             "callback_url": callback_url,
+            "subaccount": settings.ACCT_EUIMSA_SUB,  # 👈 add your subaccount here
+            "bearer": "subaccount",  # ensures subaccount bears the charges
         }
 
         response = requests.post(
@@ -78,7 +80,6 @@ def initiate_vote_payment(request, candidate_id):
             return HttpResponse(f"Paystack error: {res_data.get('message', 'Unknown error')}", status=400)
 
     return redirect("votes_page")
-
 
 def verify_payment(request):
     reference = request.GET.get("reference")

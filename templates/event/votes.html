@@ -185,7 +185,6 @@
                             {% endif %}
                             <div class="card-body text-center">
                                 <h5 class="card-title">{{ candidate.name }}</h5>
-                                <p class="text-muted">Votes: {% get_candidate_votes candidate %}</p>
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voteModal"
                                         data-candidate="{{ candidate.id }}" data-name="{{ candidate.name }}">
                                     Vote

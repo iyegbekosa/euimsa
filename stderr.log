@@ -20942,3 +20942,22 @@ Incoming skill: None
 Resolved payment_code: COLL
 Raw response: b'{"status":true,"message":"Authorization URL created","data":{"authorization_url":"https://checkout.paystack.com/1j0mvxwn4vsvd36","access_code":"1j0mvxwn4vsvd36","reference":"EUIMSA-DUES-651371561"}}'
 Paystack Response: 200 {'status': True, 'message': 'Authorization URL created', 'data': {'authorization_url': 'https://checkout.paystack.com/1j0mvxwn4vsvd36', 'access_code': '1j0mvxwn4vsvd36', 'reference': 'EUIMSA-DUES-651371561'}}
+Incoming payment_type: fee
+Incoming session: 2024/2025
+Incoming skill: None
+Resolved payment_code: COLL
+Raw response: b'{"status":false,"message":"Some subaccount(s) could not be found","data":[{"subaccount":"ACCT_9cos03wvmz3grru","share":1475000},{"subaccount":"ACCT_9cos03wvmz3grru","share":25000},{"subaccount":"ACCT_9cos03wvmz3grru","share":500000}],"meta":{"nextStep":"Ensure that you\'re passing the correct reference for the requested resource that exists on this integration"},"type":"validation_error","code":"not_found"}'
+Paystack Response: 400 {'status': False, 'message': 'Some subaccount(s) could not be found', 'data': [{'subaccount': 'ACCT_9cos03wvmz3grru', 'share': 1475000}, {'subaccount': 'ACCT_9cos03wvmz3grru', 'share': 25000}, {'subaccount': 'ACCT_9cos03wvmz3grru', 'share': 500000}], 'meta': {'nextStep': "Ensure that you're passing the correct reference for the requested resource that exists on this integration"}, 'type': 'validation_error', 'code': 'not_found'}
+Incoming payment_type: fee
+Incoming session: 2024/2025
+Incoming skill: None
+Resolved payment_code: COLL
+Raw response: b'{"status":false,"message":"Some subaccount(s) could not be found","data":[{"subaccount":"ACCT_9cos03wvmz3grru","share":1475000},{"subaccount":"ACCT_9cos03wvmz3grru","share":25000},{"subaccount":"ACCT_9cos03wvmz3grru","share":500000}],"meta":{"nextStep":"Ensure that you\'re passing the correct reference for the requested resource that exists on this integration"},"type":"validation_error","code":"not_found"}'
+Paystack Response: 400 {'status': False, 'message': 'Some subaccount(s) could not be found', 'data': [{'subaccount': 'ACCT_9cos03wvmz3grru', 'share': 1475000}, {'subaccount': 'ACCT_9cos03wvmz3grru', 'share': 25000}, {'subaccount': 'ACCT_9cos03wvmz3grru', 'share': 500000}], 'meta': {'nextStep': "Ensure that you're passing the correct reference for the requested resource that exists on this integration"}, 'type': 'validation_error', 'code': 'not_found'}
+Incoming payment_type: fee
+Incoming session: 2024/2025
+Incoming skill: None
+Resolved payment_code: COLL
+Raw response: b'{"status":true,"message":"Authorization URL created","data":{"authorization_url":"https://checkout.paystack.com/drx8m19f7qrj7h6","access_code":"drx8m19f7qrj7h6","reference":"EUIMSA-DUES-898068514"}}'
+Paystack Response: 200 {'status': True, 'message': 'Authorization URL created', 'data': {'authorization_url': 'https://checkout.paystack.com/drx8m19f7qrj7h6', 'access_code': 'drx8m19f7qrj7h6', 'reference': 'EUIMSA-DUES-898068514'}}
+Forbidden (CSRF cookie not set.): /signup
