@@ -61,7 +61,7 @@ def initiate_vote_payment(request, candidate_id):
             "amount": paystack_amount,  # already in Kobo
             "reference": transaction.transaction_ref,
             "callback_url": callback_url,
-            "subaccount": settings.ACCT_EUIMSA_SUB,  # 👈 add your subaccount here
+            "subaccount": settings.ACCT_EUIMSA_MAIN,  # 👈 add your subaccount here
             "bearer": "subaccount",  # ensures subaccount bears the charges
         }
 
