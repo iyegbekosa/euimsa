@@ -151,7 +151,7 @@ def initialize_split_payment(request):
                     "subaccounts": [
                         {
                             "subaccount": split_info["main_recipient"],
-                            "share": 1490000
+                            "share": 1990000
                         },
                     ],
                     "bearer_type": "account"
